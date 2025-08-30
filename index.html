@@ -14,7 +14,145 @@
     <title>Around The U.S.</title>
   </head>
   <body>
-    <div class="page"></div>
+    <div class="page">
+      <header class="header">
+        <img
+          src="./images/logo.svg"
+          alt="Around The U.S. Logo"
+          class="header__logo"
+        />
+      </header>
+      <main class="main">
+        <section class="profile">
+          <img
+            src="./images/avatar-me.jpg"
+            alt="User Avatar"
+            class="avatar__image"
+          />
+          <div class="profile-info">
+            <h2 class="profile-info__name">Jacques Cousteau</h2>
+            <button class="edit-button edit-button_place_super">
+              <img
+                src="./images/edit-icon.svg"
+                alt="Edit profile icon"
+                class="edit-button__icon"
+              />
+            </button>
+            <p class="profile-info__about-me">Explorador</p>
+          </div>
+          <button class="add-button">
+            <img
+              src="./images/add-icon.svg"
+              alt="Add new profile icon"
+              class="add-button__icon"
+            />
+          </button>
+        </section>
+        <section class="places">
+          <ul class="places__cards">
+            <li class="card">
+              <img
+                src="./images/ari-dutilh.jpg"
+                alt="Un grupo de personas de pie alrededor de una estatua de la libertad"
+                class="card__image"
+              />
+              <div class="card__info">
+                <h2 class="card__title block">Statue of Liberty, New York</h2>
+                <button type="button" class="card__likes-button"></button>
+              </div>
+            </li>
+            <li class="card">
+              <img
+                src="./images/jean-estrella.jpg"
+                alt="Ciudad con edificios de gran altura bajo el cielo blanco y azul durante el día"
+                class="card__image"
+              />
+              <div class="card__info">
+                <h2 class="card__title block">New York</h2>
+                <button type="button" class="card__likes-button"></button>
+              </div>
+            </li>
+            <li class="card">
+              <img
+                src="./images/jonathan-ward.jpg"
+                alt="Bandera de EE.UU. cerca de una carretera de hormigón gris"
+                class="card__image"
+              />
+              <div class="card__info">
+                <h2 class="card__title block">Monument Valley</h2>
+                <button type="button" class="card__likes-button"></button>
+              </div>
+            </li>
+            <li class="card">
+              <img
+                src="./images/clay-banks.jpg"
+                alt="Hombre cerca de la cascada"
+                class="card__image"
+              />
+              <div class="card__info">
+                <h2 class="card__title block">Oregon</h2>
+                <button type="button" class="card__likes-button"></button>
+              </div>
+            </li>
+            <li class="card">
+              <img
+                src="./images/conner-baker.jpg"
+                alt="Un grupo de personas caminando frente a una montaña"
+                class="card__image"
+              />
+              <div class="card__info">
+                <h2 class="card__title block">
+                  Mount Rushmore National Memorial
+                </h2>
+                <button type="button" class="card__likes-button"></button>
+              </div>
+            </li>
+            <li class="card">
+              <img
+                src="./images/david-evans.jpg"
+                alt="Una bandera en una formación rocosa marrón bajo el cielo azul durante el día"
+                class="card__image"
+              />
+              <div class="card__info">
+                <h2 class="card__title block">Horseshoe Bend, Arizona</h2>
+                <button type="button" class="card__likes-button"></button>
+              </div>
+            </li>
+          </ul>
+        </section>
+        <section class="edit-profile">
+          <div class="edit-profile__content">
+            <button type="button" class="edit-profile__close">
+              <img
+                src="./images/close-icon.svg"
+                alt="Icon button close"
+                class="form-profile__save-icon"
+              />
+            </button>
+            <form action="" class="form-profile">
+              <h2 class="form-profile__title">Editar perfil</h2>
+              <input
+                type="text"
+                value=""
+                name="profileName"
+                placeholder="Nombre"
+                class="form-profile__input"
+              /><input
+                type="text"
+                value=""
+                name="profileAboutMe"
+                placeholder="Acerca de mí"
+                class="form-profile__input"
+              />
+              <button class="form-profile__save" type="submit">Guardar</button>
+            </form>
+          </div>
+        </section>
+      </main>
+      <footer class="footer">
+        <p class="footer__copyright">&#169; 2025 Around The U.S.</p>
+      </footer>
+    </div>
     <script src="./scripts/index.js"></script>
   </body>
 </html>

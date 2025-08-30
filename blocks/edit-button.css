@@ -1,0 +1,43 @@
+.edit-button {
+  background: none;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 1px solid #ffffff;
+}
+
+.edit-button_place_super {
+  vertical-align: super;
+  margin-left: 18px;
+}
+
+.edit-button:hover {
+  opacity: 0.6;
+}
+
+.edit-button__icon {
+  color: #ffffff;
+}
+
+@media screen and (max-width: 768px) {
+  .edit-button_place_super {
+    margin-left: auto;
+  }
+  .edit-button {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media screen and (max-width: 544px) {
+  .edit-button_place_super {
+    vertical-align: baseline;
+    margin-left: 10px;
+  }
+
+  .edit-button {
+    width: 18px;
+    height: 18px;
+  }
+}
