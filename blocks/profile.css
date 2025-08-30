@@ -3,6 +3,13 @@
   align-items: center;
 }
 
+.profile__avatar {
+  width: 100%;
+  max-width: 120px;
+  max-height: 120px;
+  border-radius: 50%;
+}
+
 @media screen and (max-width: 544px) {
   .profile {
     flex-direction: column;
