@@ -49,76 +49,7 @@
           </button>
         </section>
         <section class="places">
-          <ul class="places__cards">
-            <li class="card">
-              <img
-                src="./images/ari-dutilh.jpg"
-                alt="A group of people standing around a statue of liberty"
-                class="card__image"
-              />
-              <div class="card__info">
-                <h2 class="card__title block">Statue of Liberty, New York</h2>
-                <button type="button" class="card__likes-button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/jean-estrella.jpg"
-                alt="City with tall buildings under a white and blue sky during the day"
-                class="card__image"
-              />
-              <div class="card__info">
-                <h2 class="card__title block">New York</h2>
-                <button type="button" class="card__likes-button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/jonathan-ward.jpg"
-                alt="U.S. flag near a gray concrete road"
-                class="card__image"
-              />
-              <div class="card__info">
-                <h2 class="card__title block">Monument Valley</h2>
-                <button type="button" class="card__likes-button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/clay-banks.jpg"
-                alt="Man near the waterfall"
-                class="card__image"
-              />
-              <div class="card__info">
-                <h2 class="card__title block">Oregon</h2>
-                <button type="button" class="card__likes-button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/conner-baker.jpg"
-                alt="A group of people walking in front of a mountain"
-                class="card__image"
-              />
-              <div class="card__info">
-                <h2 class="card__title block">
-                  Mount Rushmore National Memorial
-                </h2>
-                <button type="button" class="card__likes-button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                src="./images/david-evans.jpg"
-                alt="A flag on a brown rock formation under the blue sky during the day"
-                class="card__image"
-              />
-              <div class="card__info">
-                <h2 class="card__title block">Horseshoe Bend, Arizona</h2>
-                <button type="button" class="card__likes-button"></button>
-              </div>
-            </li>
-          </ul>
+          <ul class="places__cards"></ul>
         </section>
         <section class="edit-profile">
           <div class="edit-profile__content">
@@ -135,16 +66,16 @@
                 type="text"
                 value=""
                 name="profileName"
-                placeholder="Nombre"
+                placeholder="Name"
                 class="form-profile__input"
               /><input
                 type="text"
                 value=""
                 name="profileAboutMe"
-                placeholder="Acerca de mí"
+                placeholder="About me"
                 class="form-profile__input"
               />
-              <button class="form-profile__save" type="submit">Guardar</button>
+              <button class="form-profile__save" type="submit">Save</button>
             </form>
           </div>
         </section>
@@ -153,6 +84,51 @@
         <p class="footer__copyright">&#169; 2025 Around The U.S.</p>
       </footer>
     </div>
+    <template id="popup-template">
+      <section class="popup">
+        <div class="popup__content">
+          <button type="button" class="popup__close">
+            <img
+              src="./images/close-icon.svg"
+              alt="Icon button close"
+              class="popup__close-icon"
+            />
+          </button>
+          <div class="popup__container"></div>
+        </div>
+      </section>
+    </template>
+    <template id="card-template">
+      <li class="card">
+        <img src="" alt="" class="card__image" />
+        <div class="card__info">
+          <h2 class="card__title block"></h2>
+          <button type="button" class="card__likes-button"></button>
+          <button type="button" class="card__trash-button"></button>
+        </div>
+      </li>
+    </template>
+    <template id="form-place-template">
+      <form action="" class="form-place">
+        <h2 class="form-place__title">New place</h2>
+        <input
+          type="text"
+          value=""
+          name="placeName"
+          placeholder="Title"
+          class="form-place__input"
+          required
+        /><input
+          type="url"
+          value=""
+          name="placeLink"
+          placeholder="Image URL"
+          class="form-place__input"
+          required
+        />
+        <button class="form-place__save" type="submit">Save</button>
+      </form>
+    </template>
     <script src="./scripts/index.js"></script>
   </body>
 </html>
