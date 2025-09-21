@@ -3,13 +3,14 @@ const profileformElement = document.querySelector(".form-profile");
 const editProfileButton = document.querySelector(".edit-button");
 const editProfileClose = document.querySelector(".edit-profile__close");
 const addPlaceButton = document.querySelector(".add-button");
-const addPlaceClose = document.querySelector(".add-place__close");
 const profileName = document.querySelector(".profile-info__name");
 const profileAboutMe = document.querySelector(".profile-info__about-me");
 const cardsContainer = document.querySelector(".places__cards");
-const placeFormElement = document.querySelector(".form-place");
-const cardTemplate = document.querySelector("#card-template").content;
 const popupTemplate = document.querySelector("#popup-template").content;
+const cardTemplate = document.querySelector("#card-template").content;
+const placeFormTemplate = document.querySelector(
+  "#form-place-template"
+).content;
 
 const initialCards = [
   {
@@ -81,6 +82,48 @@ function handleGetProfileInfo() {
   handleToggle(".edit-profile", "edit-profile_active");
 }
 
+function handlePlaceFormSubmit(evt) {
+  evt.preventDefault();
+
+  let nameInput = evt.target.querySelector(
+    ".form-place__input[name='placeName']"
+  );
+  let linkInput = evt.target.querySelector(
+    ".form-place__input[name='placeLink']"
+  );
+
+  const newCard = {
+    name: nameInput.value,
+    link: linkInput.value,
+    description: "",
+  };
+
+  initialCards.push(newCard);
+  cardsContainer.append(createCard(newCard));
+
+  handleToggle(".popup", "popup_active");
+  evt.target.closest(".popup").remove();
+}
+
+function openAddPlacePopup() {
+  const popupElement = popupTemplate.querySelector(".popup").cloneNode(true);
+  popupElement
+    .querySelector(".popup__close")
+    .addEventListener("click", (evt) => {
+      handleToggle(".popup", "popup_active");
+      evt.target.closest(".popup").remove();
+    });
+
+  const placeFormElement = placeFormTemplate
+    .querySelector(".form-place")
+    .cloneNode(true);
+  placeFormElement.addEventListener("submit", handlePlaceFormSubmit);
+  popupElement.querySelector(".popup__container").append(placeFormElement);
+
+  mainElement.append(popupElement);
+  handleToggle(".popup", "popup_active");
+}
+
 function openImagePopup(imgElement, titleElement) {
   const popupElement = popupTemplate.querySelector(".popup").cloneNode(true);
   popupElement
@@ -133,38 +176,10 @@ function renderCards() {
   cardsContainer.append(...cardsResult);
 }
 
-function handlePlaceFormSubmit(evt) {
-  evt.preventDefault();
-
-  let nameInput = placeFormElement.querySelector(
-    ".form-place__input[name='placeName']"
-  );
-  let linkInput = placeFormElement.querySelector(
-    ".form-place__input[name='placeLink']"
-  );
-
-  const newCard = {
-    name: nameInput.value,
-    link: linkInput.value,
-    description: "",
-  };
-
-  initialCards.push(newCard);
-  cardsContainer.append(createCard(newCard));
-
-  handleToggle(".add-place", "add-place_active");
-}
-
 editProfileButton.addEventListener("click", handleGetProfileInfo);
 editProfileClose.addEventListener("click", () =>
   handleToggle(".edit-profile", "edit-profile_active")
 );
-addPlaceButton.addEventListener("click", () =>
-  handleToggle(".add-place", "add-place_active")
-);
-addPlaceClose.addEventListener("click", () =>
-  handleToggle(".add-place", "add-place_active")
-);
+addPlaceButton.addEventListener("click", openAddPlacePopup);
 profileformElement.addEventListener("submit", handleProfileFormSubmit);
 renderCards();
-placeFormElement.addEventListener("submit", handlePlaceFormSubmit);

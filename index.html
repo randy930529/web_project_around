@@ -79,34 +79,6 @@
             </form>
           </div>
         </section>
-        <section class="add-place">
-          <div class="add-place__content">
-            <button type="button" class="add-place__close">
-              <img
-                src="./images/close-icon.svg"
-                alt="Icon button close"
-                class="add-place__close-icon"
-              />
-            </button>
-            <form action="" class="form-place">
-              <h2 class="form-place__title">New place</h2>
-              <input
-                type="text"
-                value=""
-                name="placeName"
-                placeholder="Title"
-                class="form-place__input"
-              /><input
-                type="url"
-                value=""
-                name="placeLink"
-                placeholder="Image URL"
-                class="form-place__input"
-              />
-              <button class="form-place__save" type="submit">Save</button>
-            </form>
-          </div>
-        </section>
       </main>
       <footer class="footer">
         <p class="footer__copyright">&#169; 2025 Around The U.S.</p>
@@ -135,6 +107,27 @@
           <button type="button" class="card__trash-button"></button>
         </div>
       </li>
+    </template>
+    <template id="form-place-template">
+      <form action="" class="form-place">
+        <h2 class="form-place__title">New place</h2>
+        <input
+          type="text"
+          value=""
+          name="placeName"
+          placeholder="Title"
+          class="form-place__input"
+          required
+        /><input
+          type="url"
+          value=""
+          name="placeLink"
+          placeholder="Image URL"
+          class="form-place__input"
+          required
+        />
+        <button class="form-place__save" type="submit">Save</button>
+      </form>
     </template>
     <script src="./scripts/index.js"></script>
   </body>
