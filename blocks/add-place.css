@@ -1,0 +1,52 @@
+.add-place {
+  background: rgb(0, 0, 0, 0.5);
+  width: 100%;
+  max-width: 880px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-place_active {
+  display: flex;
+}
+
+.add-place__content {
+  width: 100%;
+  max-width: 480px;
+  padding: 40px;
+}
+
+.add-place__close {
+  background: none;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  margin-left: 100%;
+}
+
+.add-place__close-icon {
+  width: 40px;
+  height: 40px;
+}
+
+@media screen and (max-width: 544px) {
+  .add-place__content {
+    max-width: 282px;
+    padding: 0;
+  }
+
+  .add-place__close-icon {
+    width: 26px;
+    height: 26px;
+  }
+
+  .add-place__close {
+    margin-left: 90%;
+  }
+}

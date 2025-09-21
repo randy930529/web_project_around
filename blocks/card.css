@@ -3,6 +3,7 @@
   width: 100%;
   height: 361px;
   border-radius: 10px;
+  position: relative;
 }
 
 .card__image {
@@ -12,6 +13,15 @@
   object-fit: cover;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  cursor: pointer;
+}
+
+.card__image_popup {
+  max-width: 75vw;
+  height: auto;
+  max-height: 75vh;
+  border-radius: 0;
+  cursor: default;
 }
 
 .card__info {
@@ -25,6 +35,15 @@
   font-size: 18px;
   max-width: 80%;
   margin: 0;
+}
+
+.card__title_popup {
+  font-family: "Inter", sans-serif;
+  color: #ffffff;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  margin-top: 10px;
 }
 
 .card__likes-button {
@@ -46,4 +65,23 @@
 
 .card__likes-button_active {
   background-image: url("../images/likes-icon-black.svg");
+}
+
+.card__trash-button {
+  background-image: url("../images/trash-icon.svg");
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+  border: none;
+  width: 18px;
+  height: 19px;
+  padding: 0;
+  position: absolute;
+  top: 18px;
+  right: 15px;
+}
+
+.card__trash-button:hover {
+  opacity: 0.6;
 }
