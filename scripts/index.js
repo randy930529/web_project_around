@@ -95,7 +95,7 @@ function handlePlaceFormSubmit(evt) {
   const newCard = {
     name: nameInput.value,
     link: linkInput.value,
-    description: "",
+    description: nameInput.value,
   };
 
   initialCards.push(newCard);
