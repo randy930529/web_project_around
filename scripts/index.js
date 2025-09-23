@@ -1,13 +1,14 @@
 const mainElement = document.querySelector(".main");
-const profileformElement = document.querySelector(".form-profile");
 const editProfileButton = document.querySelector(".edit-button");
-const editProfileClose = document.querySelector(".edit-profile__close");
 const addPlaceButton = document.querySelector(".add-button");
 const profileName = document.querySelector(".profile-info__name");
 const profileAboutMe = document.querySelector(".profile-info__about-me");
 const cardsContainer = document.querySelector(".places__cards");
 const popupTemplate = document.querySelector("#popup-template").content;
 const cardTemplate = document.querySelector("#card-template").content;
+const profileFormTemplate = document.querySelector(
+  "#form-profile-template"
+).content;
 const placeFormTemplate = document.querySelector(
   "#form-place-template"
 ).content;
@@ -52,34 +53,51 @@ function handleToggle(classContainer, classToggle) {
   container.classList.toggle(classToggle);
 }
 
+function createPopupElement() {
+  const popupElement = popupTemplate.querySelector(".popup").cloneNode(true);
+  popupElement
+    .querySelector(".popup__close")
+    .addEventListener("click", (evt) => {
+      handleToggle(".popup", "popup_active");
+      evt.target.closest(".popup").remove();
+    });
+  return popupElement;
+}
+
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
 
-  let nameInput = profileformElement.querySelector(
+  let nameInput = evt.target.querySelector(
     ".form-profile__input[name='profileName']"
   );
-  let jobInput = profileformElement.querySelector(
+  let jobInput = evt.target.querySelector(
     ".form-profile__input[name='profileAboutMe']"
   );
 
   profileName.textContent = nameInput.value;
   profileAboutMe.textContent = jobInput.value;
 
-  handleToggle(".edit-profile", "edit-profile_active");
+  handleToggle(".popup", "popup_active");
+  evt.target.closest(".popup").remove();
 }
 
-function handleGetProfileInfo() {
-  const nameInput = profileformElement.querySelector(
+function openEditProfilePopup() {
+  const popupElement = createPopupElement();
+
+  const profileFormElement = profileFormTemplate
+    .querySelector(".form-profile")
+    .cloneNode(true);
+  profileFormElement.querySelector(
     ".form-profile__input[name='profileName']"
-  );
-  const jobInput = profileformElement.querySelector(
+  ).value = profileName.textContent;
+  profileFormElement.querySelector(
     ".form-profile__input[name='profileAboutMe']"
-  );
+  ).value = profileAboutMe.textContent;
+  profileFormElement.addEventListener("submit", handleProfileFormSubmit);
+  popupElement.querySelector(".popup__container").append(profileFormElement);
 
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileAboutMe.textContent;
-
-  handleToggle(".edit-profile", "edit-profile_active");
+  mainElement.append(popupElement);
+  handleToggle(".popup", "popup_active");
 }
 
 function handlePlaceFormSubmit(evt) {
@@ -106,13 +124,7 @@ function handlePlaceFormSubmit(evt) {
 }
 
 function openAddPlacePopup() {
-  const popupElement = popupTemplate.querySelector(".popup").cloneNode(true);
-  popupElement
-    .querySelector(".popup__close")
-    .addEventListener("click", (evt) => {
-      handleToggle(".popup", "popup_active");
-      evt.target.closest(".popup").remove();
-    });
+  const popupElement = createPopupElement();
 
   const placeFormElement = placeFormTemplate
     .querySelector(".form-place")
@@ -125,13 +137,7 @@ function openAddPlacePopup() {
 }
 
 function openImagePopup(imgElement, titleElement) {
-  const popupElement = popupTemplate.querySelector(".popup").cloneNode(true);
-  popupElement
-    .querySelector(".popup__close")
-    .addEventListener("click", (evt) => {
-      handleToggle(".popup", "popup_active");
-      evt.target.closest(".popup").remove();
-    });
+  const popupElement = createPopupElement();
 
   imgElement.classList.add("card__image_popup");
   titleElement.classList.add("card__title_popup");
@@ -176,10 +182,6 @@ function renderCards() {
   cardsContainer.append(...cardsResult);
 }
 
-editProfileButton.addEventListener("click", handleGetProfileInfo);
-editProfileClose.addEventListener("click", () =>
-  handleToggle(".edit-profile", "edit-profile_active")
-);
+editProfileButton.addEventListener("click", openEditProfilePopup);
 addPlaceButton.addEventListener("click", openAddPlacePopup);
-profileformElement.addEventListener("submit", handleProfileFormSubmit);
 renderCards();

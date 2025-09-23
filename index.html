@@ -51,34 +51,6 @@
         <section class="places">
           <ul class="places__cards"></ul>
         </section>
-        <section class="edit-profile">
-          <div class="edit-profile__content">
-            <button type="button" class="edit-profile__close">
-              <img
-                src="./images/close-icon.svg"
-                alt="Icon button close"
-                class="edit-profile__close-icon"
-              />
-            </button>
-            <form action="" class="form-profile">
-              <h2 class="form-profile__title">Editar perfil</h2>
-              <input
-                type="text"
-                value=""
-                name="profileName"
-                placeholder="Name"
-                class="form-profile__input"
-              /><input
-                type="text"
-                value=""
-                name="profileAboutMe"
-                placeholder="About me"
-                class="form-profile__input"
-              />
-              <button class="form-profile__save" type="submit">Save</button>
-            </form>
-          </div>
-        </section>
       </main>
       <footer class="footer">
         <p class="footer__copyright">&#169; 2025 Around The U.S.</p>
@@ -97,6 +69,27 @@
           <div class="popup__container"></div>
         </div>
       </section>
+    </template>
+    <template id="form-profile-template">
+      <form action="" class="form-profile">
+        <h2 class="form-profile__title">Editar perfil</h2>
+        <input
+          type="text"
+          value=""
+          name="profileName"
+          placeholder="Name"
+          class="form-profile__input"
+          required
+        /><input
+          type="text"
+          value=""
+          name="profileAboutMe"
+          placeholder="About me"
+          class="form-profile__input"
+          required
+        />
+        <button class="form-profile__save" type="submit">Save</button>
+      </form>
     </template>
     <template id="card-template">
       <li class="card">
