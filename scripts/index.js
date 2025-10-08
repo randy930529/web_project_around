@@ -67,11 +67,9 @@ function createPopupElement() {
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
 
-  let nameInput = evt.target.querySelector(
-    ".form-profile__input[name='profileName']"
-  );
+  let nameInput = evt.target.querySelector(".form__input[name='profileName']");
   let jobInput = evt.target.querySelector(
-    ".form-profile__input[name='profileAboutMe']"
+    ".form__input[name='profileAboutMe']"
   );
 
   profileName.textContent = nameInput.value;
@@ -85,13 +83,12 @@ function openEditProfilePopup() {
   const popupElement = createPopupElement();
 
   const profileFormElement = profileFormTemplate
-    .querySelector(".form-profile")
+    .querySelector(".form")
     .cloneNode(true);
+  profileFormElement.querySelector(".form__input[name='profileName']").value =
+    profileName.textContent;
   profileFormElement.querySelector(
-    ".form-profile__input[name='profileName']"
-  ).value = profileName.textContent;
-  profileFormElement.querySelector(
-    ".form-profile__input[name='profileAboutMe']"
+    ".form__input[name='profileAboutMe']"
   ).value = profileAboutMe.textContent;
   profileFormElement.addEventListener("submit", handleProfileFormSubmit);
   popupElement.querySelector(".popup__container").append(profileFormElement);
@@ -103,12 +100,8 @@ function openEditProfilePopup() {
 function handlePlaceFormSubmit(evt) {
   evt.preventDefault();
 
-  let nameInput = evt.target.querySelector(
-    ".form-place__input[name='placeName']"
-  );
-  let linkInput = evt.target.querySelector(
-    ".form-place__input[name='placeLink']"
-  );
+  let nameInput = evt.target.querySelector(".form__input[name='placeName']");
+  let linkInput = evt.target.querySelector(".form__input[name='placeLink']");
 
   const newCard = {
     name: nameInput.value,
@@ -127,7 +120,7 @@ function openAddPlacePopup() {
   const popupElement = createPopupElement();
 
   const placeFormElement = placeFormTemplate
-    .querySelector(".form-place")
+    .querySelector(".form")
     .cloneNode(true);
   placeFormElement.addEventListener("submit", handlePlaceFormSubmit);
   popupElement.querySelector(".popup__container").append(placeFormElement);
