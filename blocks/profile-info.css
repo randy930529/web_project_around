@@ -13,7 +13,7 @@
   margin: 0;
 }
 
-.profile-info__about-me {
+.profile-info__aboutMe {
   color: #ffffff;
   font-size: 18px;
   line-height: 100%;
@@ -39,7 +39,7 @@
     font-size: 22px;
   }
 
-  .profile-info__about-me {
+  .profile-info__aboutMe {
     font-size: 14px;
     text-align: center;
   }

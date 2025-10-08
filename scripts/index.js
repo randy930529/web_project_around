@@ -1,8 +1,8 @@
 const mainElement = document.querySelector(".main");
 const editProfileButton = document.querySelector(".edit-button");
 const addPlaceButton = document.querySelector(".add-button");
-const profileName = document.querySelector(".profile-info__name");
-const profileAboutMe = document.querySelector(".profile-info__about-me");
+const profilename = document.querySelector(".profile-info__name");
+const profileAboutMe = document.querySelector(".profile-info__aboutMe");
 const cardsContainer = document.querySelector(".places__cards");
 const popupTemplate = document.querySelector("#popup-template").content;
 const cardTemplate = document.querySelector("#card-template").content;
@@ -64,16 +64,38 @@ function createPopupElement() {
   return popupElement;
 }
 
-function handleProfileFormSubmit(evt) {
+function upProfile(inputList) {
+  inputList.forEach((input) => {
+    const profileElement = document.querySelector(
+      `.profile-info__${input.name}`
+    );
+
+    if (profileElement) {
+      profileElement.textContent = input.value;
+    }
+  });
+}
+
+function createPlace(inputList) {
+  const newPlace = {
+    name: "",
+    link: "",
+    description: "",
+  };
+
+  inputList.forEach((input) => {
+    newPlace[`${input.name}`] = input.value;
+  });
+
+  initialCards.push(newPlace);
+  cardsContainer.append(createCard(newPlace));
+}
+
+function handleFormSubmit(evt, action) {
   evt.preventDefault();
 
-  let nameInput = evt.target.querySelector(".form__input[name='profileName']");
-  let jobInput = evt.target.querySelector(
-    ".form__input[name='profileAboutMe']"
-  );
-
-  profileName.textContent = nameInput.value;
-  profileAboutMe.textContent = jobInput.value;
+  const inputList = Array.from(evt.target.querySelectorAll(".form__input"));
+  action(inputList);
 
   handleToggle(".popup", "popup_active");
   evt.target.closest(".popup").remove();
@@ -85,35 +107,17 @@ function openEditProfilePopup() {
   const profileFormElement = profileFormTemplate
     .querySelector(".form")
     .cloneNode(true);
-  profileFormElement.querySelector(".form__input[name='profileName']").value =
-    profileName.textContent;
-  profileFormElement.querySelector(
-    ".form__input[name='profileAboutMe']"
-  ).value = profileAboutMe.textContent;
-  profileFormElement.addEventListener("submit", handleProfileFormSubmit);
+  profileFormElement.querySelector(".form__input[name='name']").value =
+    profilename.textContent;
+  profileFormElement.querySelector(".form__input[name='aboutMe']").value =
+    profileAboutMe.textContent;
+  profileFormElement.addEventListener("submit", (evt) =>
+    handleFormSubmit(evt, upProfile)
+  );
   popupElement.querySelector(".popup__container").append(profileFormElement);
 
   mainElement.append(popupElement);
   handleToggle(".popup", "popup_active");
-}
-
-function handlePlaceFormSubmit(evt) {
-  evt.preventDefault();
-
-  let nameInput = evt.target.querySelector(".form__input[name='placeName']");
-  let linkInput = evt.target.querySelector(".form__input[name='placeLink']");
-
-  const newCard = {
-    name: nameInput.value,
-    link: linkInput.value,
-    description: nameInput.value,
-  };
-
-  initialCards.push(newCard);
-  cardsContainer.append(createCard(newCard));
-
-  handleToggle(".popup", "popup_active");
-  evt.target.closest(".popup").remove();
 }
 
 function openAddPlacePopup() {
@@ -122,7 +126,9 @@ function openAddPlacePopup() {
   const placeFormElement = placeFormTemplate
     .querySelector(".form")
     .cloneNode(true);
-  placeFormElement.addEventListener("submit", handlePlaceFormSubmit);
+  placeFormElement.addEventListener("submit", (evt) =>
+    handleFormSubmit(evt, createPlace)
+  );
   popupElement.querySelector(".popup__container").append(placeFormElement);
 
   mainElement.append(popupElement);
@@ -146,7 +152,8 @@ function createCard(propCard) {
   const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
   cardElement.querySelector(".card__title").textContent = propCard.name;
   cardElement.querySelector(".card__image").src = propCard.link;
-  cardElement.querySelector(".card__image").alt = propCard.description;
+  cardElement.querySelector(".card__image").alt =
+    propCard.description || propCard.name;
   cardElement
     .querySelector(".card__image")
     .addEventListener("click", function (evt) {

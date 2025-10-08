@@ -38,7 +38,7 @@
                 class="edit-button__icon"
               />
             </button>
-            <p class="profile-info__about-me">Explorador</p>
+            <p class="profile-info__aboutMe">Explorador</p>
           </div>
           <button class="add-button">
             <img
@@ -73,21 +73,32 @@
     <template id="form-profile-template">
       <form action="" class="form">
         <h2 class="form__title">Editar perfil</h2>
-        <input
-          type="text"
-          value=""
-          name="profileName"
-          placeholder="Name"
-          class="form__input"
-          required
-        /><input
-          type="text"
-          value=""
-          name="profileAboutMe"
-          placeholder="About me"
-          class="form__input"
-          required
-        />
+        <div>
+          <input
+            type="text"
+            value=""
+            name="name"
+            placeholder="Name"
+            class="form__input"
+            minlength="2"
+            maxlength="40"
+            required
+          />
+          <p id="name-error" class="form__error"></p>
+        </div>
+        <div>
+          <input
+            type="text"
+            value=""
+            name="aboutMe"
+            placeholder="About me"
+            class="form__input"
+            minlength="2"
+            maxlength="200"
+            required
+          />
+          <p id="aboutMe-error" class="form__error"></p>
+        </div>
         <button class="form__submit" type="submit">Save</button>
       </form>
     </template>
@@ -104,21 +115,28 @@
     <template id="form-place-template">
       <form action="" class="form">
         <h2 class="form__title">New place</h2>
-        <input
-          type="text"
-          value=""
-          name="placeName"
-          placeholder="Title"
-          class="form__input"
-          required
-        /><input
-          type="url"
-          value=""
-          name="placeLink"
-          placeholder="Image URL"
-          class="form__input"
-          required
-        />
+        <div>
+          <input
+            type="text"
+            value=""
+            name="name"
+            placeholder="Title"
+            class="form__input"
+            required
+          />
+          <p id="name-error" class="form__error"></p>
+        </div>
+        <div>
+          <input
+            type="url"
+            value=""
+            name="link"
+            placeholder="Image URL"
+            class="form__input"
+            required
+          />
+          <p id="link-error" class="form__error"></p>
+        </div>
         <button class="form__submit" type="submit">Save</button>
       </form>
     </template>
