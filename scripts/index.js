@@ -54,8 +54,7 @@ function handleToggle(classContainer, classToggle) {
   container.classList.toggle(classToggle);
 }
 
-function createPopupElement() {
-  const popupElement = popupTemplate.querySelector(".popup").cloneNode(true);
+function closedPopupElementWhitClick(popupElement) {
   popupElement.addEventListener("click", (evt) => {
     handleToggle(".popup", "popup_active");
     evt.currentTarget.remove();
@@ -65,6 +64,23 @@ function createPopupElement() {
     .addEventListener("click", (evt) => {
       evt.stopPropagation();
     });
+}
+
+function closedPopupElementWhitEsc(popupElement) {
+  const handlePressESC = (evt) => {
+    if (evt.key === "Escape") {
+      handleToggle(".popup", "popup_active");
+      popupElement.remove();
+    }
+    document.removeEventListener("keydown", handlePressESC);
+  };
+  document.addEventListener("keydown", handlePressESC);
+}
+
+function createPopupElement() {
+  const popupElement = popupTemplate.querySelector(".popup").cloneNode(true);
+  closedPopupElementWhitClick(popupElement);
+  closedPopupElementWhitEsc(popupElement);
   return popupElement;
 }
 
