@@ -56,11 +56,14 @@ function handleToggle(classContainer, classToggle) {
 
 function createPopupElement() {
   const popupElement = popupTemplate.querySelector(".popup").cloneNode(true);
+  popupElement.addEventListener("click", (evt) => {
+    handleToggle(".popup", "popup_active");
+    evt.currentTarget.remove();
+  });
   popupElement
-    .querySelector(".popup__close")
+    .querySelector(".popup__container")
     .addEventListener("click", (evt) => {
-      handleToggle(".popup", "popup_active");
-      evt.target.closest(".popup").remove();
+      evt.stopPropagation();
     });
   return popupElement;
 }
