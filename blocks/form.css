@@ -30,11 +30,16 @@
 }
 
 .form__error {
+  display: none;
   font-size: 12px;
   line-height: 100%;
-  color: #ff0000;
   max-width: 100%;
   margin: 7px 0 0;
+}
+
+.form__error_visible {
+  display: block;
+  color: #ff0000;
 }
 
 .form__submit {
@@ -49,4 +54,10 @@
 
 .form__submit:hover {
   opacity: 0.8;
+}
+
+.form__submit_disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.2;
 }

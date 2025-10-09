@@ -4,6 +4,7 @@ const addPlaceButton = document.querySelector(".add-button");
 const profilename = document.querySelector(".profile-info__name");
 const profileAboutMe = document.querySelector(".profile-info__aboutMe");
 const cardsContainer = document.querySelector(".places__cards");
+
 const popupTemplate = document.querySelector("#popup-template").content;
 const cardTemplate = document.querySelector("#card-template").content;
 const profileFormTemplate = document.querySelector(
@@ -101,41 +102,42 @@ function handleFormSubmit(evt, action) {
   evt.target.closest(".popup").remove();
 }
 
-function openEditProfilePopup() {
-  const popupElement = createPopupElement();
-
-  const profileFormElement = profileFormTemplate
-    .querySelector(".form")
-    .cloneNode(true);
-  profileFormElement.querySelector(".form__input[name='name']").value =
+function profileFormConfigurator(formElement) {
+  formElement.querySelector(".form__input[name='name']").value =
     profilename.textContent;
-  profileFormElement.querySelector(".form__input[name='aboutMe']").value =
+  formElement.querySelector(".form__input[name='aboutMe']").value =
     profileAboutMe.textContent;
-  profileFormElement.addEventListener("submit", (evt) =>
+  formElement.addEventListener("submit", (evt) =>
     handleFormSubmit(evt, upProfile)
   );
-  popupElement.querySelector(".popup__container").append(profileFormElement);
-
-  mainElement.append(popupElement);
-  handleToggle(".popup", "popup_active");
 }
 
-function openAddPlacePopup() {
-  const popupElement = createPopupElement();
-
-  const placeFormElement = placeFormTemplate
-    .querySelector(".form")
-    .cloneNode(true);
-  placeFormElement.addEventListener("submit", (evt) =>
+function placeFormConfigurator(formElement) {
+  formElement.addEventListener("submit", (evt) =>
     handleFormSubmit(evt, createPlace)
   );
-  popupElement.querySelector(".popup__container").append(placeFormElement);
+}
 
+function openPopupWhitForm(formTemplate, formConfigurator) {
+  const popupElement = createPopupElement();
+  const formElement = formTemplate.querySelector(".form").cloneNode(true);
+
+  formConfigurator(formElement);
+
+  popupElement.querySelector(".popup__container").append(formElement);
   mainElement.append(popupElement);
+  enableValidation({
+    formSelector: ".form",
+    inputSelector: ".form__input",
+    submitButtonSelector: ".form__submit",
+    inactiveButtonClass: "form__submit_disabled",
+    inputErrorClass: "form__input_type_error",
+    errorClass: "form__error_visible",
+  });
   handleToggle(".popup", "popup_active");
 }
 
-function openImagePopup(imgElement, titleElement) {
+function openPopupWhitImage(imgElement, titleElement) {
   const popupElement = createPopupElement();
 
   imgElement.classList.add("card__image_popup");
@@ -158,7 +160,7 @@ function createCard(propCard) {
     .querySelector(".card__image")
     .addEventListener("click", function (evt) {
       evt.target.classList.toggle("card__likes-button_active");
-      openImagePopup(
+      openPopupWhitImage(
         evt.target.cloneNode(true),
         cardElement.querySelector(".card__title").cloneNode(true)
       );
@@ -182,6 +184,10 @@ function renderCards() {
   cardsContainer.append(...cardsResult);
 }
 
-editProfileButton.addEventListener("click", openEditProfilePopup);
-addPlaceButton.addEventListener("click", openAddPlacePopup);
+editProfileButton.addEventListener("click", () =>
+  openPopupWhitForm(profileFormTemplate, profileFormConfigurator)
+);
+addPlaceButton.addEventListener("click", () =>
+  openPopupWhitForm(placeFormTemplate, placeFormConfigurator)
+);
 renderCards();
