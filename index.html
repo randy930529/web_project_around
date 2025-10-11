@@ -38,7 +38,7 @@
                 class="edit-button__icon"
               />
             </button>
-            <p class="profile-info__about-me">Explorador</p>
+            <p class="profile-info__aboutMe">Explorador</p>
           </div>
           <button class="add-button">
             <img
@@ -50,34 +50,6 @@
         </section>
         <section class="places">
           <ul class="places__cards"></ul>
-        </section>
-        <section class="edit-profile">
-          <div class="edit-profile__content">
-            <button type="button" class="edit-profile__close">
-              <img
-                src="./images/close-icon.svg"
-                alt="Icon button close"
-                class="edit-profile__close-icon"
-              />
-            </button>
-            <form action="" class="form-profile">
-              <h2 class="form-profile__title">Editar perfil</h2>
-              <input
-                type="text"
-                value=""
-                name="profileName"
-                placeholder="Name"
-                class="form-profile__input"
-              /><input
-                type="text"
-                value=""
-                name="profileAboutMe"
-                placeholder="About me"
-                class="form-profile__input"
-              />
-              <button class="form-profile__save" type="submit">Save</button>
-            </form>
-          </div>
         </section>
       </main>
       <footer class="footer">
@@ -98,6 +70,38 @@
         </div>
       </section>
     </template>
+    <template id="form-profile-template">
+      <form action="" class="form" novalidate>
+        <h2 class="form__title">Editar perfil</h2>
+        <div>
+          <input
+            type="text"
+            value=""
+            name="name"
+            placeholder="Name"
+            class="form__input"
+            minlength="2"
+            maxlength="40"
+            required
+          />
+          <p id="name-error" class="form__error"></p>
+        </div>
+        <div>
+          <input
+            type="text"
+            value=""
+            name="aboutMe"
+            placeholder="About me"
+            class="form__input"
+            minlength="2"
+            maxlength="200"
+            required
+          />
+          <p id="aboutMe-error" class="form__error"></p>
+        </div>
+        <button class="form__submit" type="submit">Save</button>
+      </form>
+    </template>
     <template id="card-template">
       <li class="card">
         <img src="" alt="" class="card__image" />
@@ -109,26 +113,36 @@
       </li>
     </template>
     <template id="form-place-template">
-      <form action="" class="form-place">
-        <h2 class="form-place__title">New place</h2>
-        <input
-          type="text"
-          value=""
-          name="placeName"
-          placeholder="Title"
-          class="form-place__input"
-          required
-        /><input
-          type="url"
-          value=""
-          name="placeLink"
-          placeholder="Image URL"
-          class="form-place__input"
-          required
-        />
-        <button class="form-place__save" type="submit">Save</button>
+      <form action="" class="form" novalidate>
+        <h2 class="form__title">New place</h2>
+        <div>
+          <input
+            type="text"
+            value=""
+            name="name"
+            placeholder="Title"
+            class="form__input"
+            minlength="2"
+            maxlength="30"
+            required
+          />
+          <p id="name-error" class="form__error"></p>
+        </div>
+        <div>
+          <input
+            type="url"
+            value=""
+            name="link"
+            placeholder="Image URL"
+            class="form__input"
+            required
+          />
+          <p id="link-error" class="form__error"></p>
+        </div>
+        <button class="form__submit" type="submit">Save</button>
       </form>
     </template>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
   </body>
 </html>
